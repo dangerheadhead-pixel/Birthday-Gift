@@ -22,10 +22,9 @@
                     colors: {
                         brand: {
                             pink: '#FF6B8B',
-                            purple: '#8A2387',
-                            yellow: '#F9D423',
-                            orange: '#FF8E53',
-                            blue: '#4A0E4E'
+                            purple: '#9333EA',
+                            blue: '#3B82F6',
+                            indigo: '#6366F1'
                         }
                     },
                     fontFamily: {
@@ -41,7 +40,7 @@
     <style>
         body {
             font-family: 'Outfit', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg, #3B82F6, #8A2387, #E73C7E, #6366F1);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             overflow-x: hidden;
@@ -122,10 +121,10 @@
         }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
         ::-webkit-scrollbar {
@@ -146,7 +145,7 @@
         window.audioCtx = null;
         window.isPlayingAudio = false;
 
-        const balloonColors = ['#FF6B8B', '#FF8E53', '#F9D423', '#4ED760', '#23A6D5', '#A78BFA'];
+        const balloonColors = ['#FF6B8B', '#9333EA', '#3B82F6', '#EC4899', '#6366F1', '#A78BFA'];
 
         window.triggerConfetti = function() {
             if (typeof confetti === 'function') {
@@ -388,12 +387,13 @@
 
         window.addEventListener('load', function() {
             window.triggerConfettiBurst();
-            // Spawn a rich cluster of default balloons right away
-            window.spawnBalloons(18);
+            // Initial spawn of floating balloons
+            window.spawnBalloons(25);
 
+            // Continuous background balloon generation
             setInterval(() => {
-                if (document.querySelectorAll('.balloon').length < 20) {
-                    window.spawnBalloons(3);
+                if (document.querySelectorAll('.balloon').length < 22) {
+                    window.spawnBalloons(4);
                 }
             }, 2500);
         });
@@ -422,12 +422,12 @@
                 
                 <!-- Floating Decorative Elements -->
                 <div class="absolute top-4 left-4 text-pink-500 text-xl sparkle"><i class="fa-solid fa-star"></i></div>
-                <div class="absolute top-6 right-6 text-yellow-400 text-2xl sparkle" style="animation-delay: 0.5s"><i class="fa-solid fa-sparkles"></i></div>
+                <div class="absolute top-6 right-6 text-purple-600 text-2xl sparkle" style="animation-delay: 0.5s"><i class="fa-solid fa-sparkles"></i></div>
 
                 <!-- Recipient Name & Greeting Title -->
                 <div class="mt-2 mb-2">
                     <h2 class="text-xs uppercase tracking-widest text-pink-600 font-bold mb-1">Mark your calendars: November 14th</h2>
-                    <h1 id="display-name" class="font-heading text-4xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 leading-tight">
+                    <h1 id="display-name" class="font-heading text-4xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 leading-tight">
                         Raraa
                     </h1>
                 </div>
@@ -436,19 +436,19 @@
                 <div class="my-6 relative cursor-pointer" onclick="blowOutCandles()" title="Click to blow out candles!">
                     <svg class="w-36 h-36 mx-auto drop-shadow-md" viewBox="0 0 200 200">
                         <!-- Cake Base -->
-                        <path d="M 40 140 Q 100 160 160 140 L 160 170 Q 100 190 40 170 Z" fill="#F472B6"/>
+                        <path d="M 40 140 Q 100 160 160 140 L 160 170 Q 100 190 40 170 Z" fill="#EC4899"/>
                         <path d="M 40 110 Q 100 130 160 110 L 160 140 Q 100 160 40 140 Z" fill="#3B82F6"/>
-                        <path d="M 40 80 Q 100 100 160 80 L 160 110 Q 100 130 40 110 Z" fill="#FBBF24"/>
+                        <path d="M 40 80 Q 100 100 160 80 L 160 110 Q 100 130 40 110 Z" fill="#9333EA"/>
                         <!-- Frosting Layer -->
                         <path d="M 40 80 Q 55 95 70 80 Q 85 95 100 80 Q 115 95 130 80 Q 145 95 160 80 L 160 70 Q 100 50 40 70 Z" fill="#FFFFFF"/>
                         <!-- Candle 1 -->
                         <rect x="70" y="40" width="8" height="35" rx="3" fill="#EC4899"/>
                         <path class="flame flame-1" d="M 74 25 C 70 32 78 35 74 40 C 70 35 78 32 74 25 Z" fill="#F59E0B"/>
                         <!-- Candle 2 (Center) -->
-                        <rect x="96" y="35" width="8" height="40" rx="3" fill="#10B981"/>
+                        <rect x="96" y="35" width="8" height="40" rx="3" fill="#3B82F6"/>
                         <path class="flame flame-2" d="M 100 20 C 96 27 104 30 100 35 C 96 30 104 27 100 20 Z" fill="#F59E0B"/>
                         <!-- Candle 3 -->
-                        <rect x="122" y="40" width="8" height="35" rx="3" fill="#8B5CF6"/>
+                        <rect x="122" y="40" width="8" height="35" rx="3" fill="#9333EA"/>
                         <path class="flame flame-3" d="M 126 25 C 122 32 130 35 126 40 C 122 35 130 32 126 25 Z" fill="#F59E0B"/>
                     </svg>
                     <span id="candle-hint" class="text-[10px] bg-slate-900/15 backdrop-blur-sm px-3 py-1 rounded-full text-slate-700 font-semibold uppercase tracking-wider inline-block mt-1">
@@ -458,11 +458,11 @@
 
                 <!-- Call To Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3 w-full mt-2">
-                    <button onclick="toggleCardFlip()" class="flex-1 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3 px-6 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition transform active:scale-95 flex items-center justify-center gap-2">
+                    <button onclick="toggleCardFlip()" class="flex-1 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 hover:opacity-95 text-white font-bold py-3 px-6 rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-envelope-open-text"></i>
                         <span>Open Card</span>
                     </button>
-                    <button onclick="triggerConfettiBurst()" class="flex-1 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white font-bold py-3 px-6 rounded-2xl shadow-lg hover:shadow-orange-500/30 transition transform active:scale-95 flex items-center justify-center gap-2">
+                    <button onclick="triggerConfettiBurst()" class="flex-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-95 text-white font-bold py-3 px-6 rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-gift"></i>
                         <span>Pop Confetti!</span>
                     </button>
@@ -485,15 +485,14 @@
                     <!-- Personalized Handwriting Wish Message -->
                     <h3 class="font-cursive text-3xl sm:text-4xl text-pink-600 mb-2">Happy Birthday Raraa!</h3>
                     
-                    <!-- PEAK LONG PARAGRAPH -->
-                    <p id="display-message" class="text-slate-700 leading-relaxed font-sans text-xs sm:text-sm mb-4 text-justify px-1">
-                        As November 14th rolls around, it brings with it a celebration of someone who effortlessly makes the entire world a whole lot brighter, louder, and infinitely more fun. Raraa, you possess a rare kind of energy—the kind that turns ordinary days into core memories, cuts right through the noise with unstoppable laughter, and brings genuine warmth to everyone fortunate enough to be in your corner. May this new year of your life unlock absolute peak chapters filled with epic wins, fearless adventures, unwavering peace of mind, and all the success and happiness your heart is chasing. Keep standing out, keep owning your vibe, and never lose that legendary spark. Have the most unforgettable birthday ever—you've earned every bit of it!
+                    <p id="display-message" class="text-slate-700 leading-relaxed font-sans text-[11px] sm:text-xs mb-4 text-justify px-1">
+                        As November 14th arrives, it marks a moment to celebrate an extraordinary person whose warmth, brilliant mind, and radiant positivity lighten up every room they step into. Raraa, you possess a rare and magnificent gift—the ability to turn ordinary days into core memories, inspire everyone around you with your quiet strength, and bring genuine joy wherever you go. Your resilience, kindness, and unwavering authenticity make you truly one of a kind. May this brand new chapter of your life unlock absolute peak moments, endless victories, and incredible breakthroughs in everything your heart desires. May your path be lined with peace of mind, fulfilling adventures, deep happiness, and unbounded success. Keep standing out, reaching for the stars, and shining with that legendary spark that makes you so deeply special. Wishing you the most unforgettable birthday filled with endless laughter, love, and triumph in all that you do!
                     </p>
 
                     <!-- Sign off -->
                     <div class="text-right pr-2 font-cursive text-2xl text-purple-700">
-                        <p class="text-[10px] font-sans text-slate-400 not-italic uppercase tracking-widest mb-0.5">With love & best wishes,</p>
-                        <p id="display-sender">~ Your Bestie ❤️</p>
+                        <p class="text-[10px] font-sans text-slate-400 not-italic uppercase tracking-widest mb-0.5">With respect & best wishes,</p>
+                        <p id="display-sender">~ Your Dostain ❤️</p>
                     </div>
                 </div>
 
@@ -516,13 +515,9 @@
         </div>
     </main>
 
-    <!-- Bottom Controls & Music Bar -->
-    <footer class="w-full max-w-md mx-auto z-10 text-center my-2">
-        <div class="flex items-center justify-center gap-4 bg-white/30 backdrop-blur-md border border-white/50 py-2.5 px-6 rounded-2xl shadow-md text-xs font-medium text-white">
-            <button onclick="spawnBalloons(8)" class="hover:text-yellow-300 transition flex items-center gap-1.5">
-                <i class="fa-solid fa-balloon"></i> +More Balloons
-            </button>
-            <span class="opacity-40">|</span>
+    <!-- Bottom Controls Footer -->
+    <footer class="w-full max-w-xs mx-auto z-10 text-center my-2">
+        <div class="flex items-center justify-center bg-white/30 backdrop-blur-md border border-white/50 py-2.5 px-6 rounded-2xl shadow-md text-xs font-medium text-white">
             <button onclick="shareWish()" class="hover:text-yellow-300 transition flex items-center gap-1.5">
                 <i class="fa-solid fa-share-nodes"></i> Share Card
             </button>
